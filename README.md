@@ -36,7 +36,7 @@ Sets fan speed
 Via /proc/acpi/ibm/fan interface
 
 ```
-usage: %s [0-7|auto|full-speed]
+usage: fanctl [0-7|auto|full-speed]
 ```
 
 ### thinkhotkeys

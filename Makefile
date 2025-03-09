@@ -10,7 +10,13 @@ ledctl: ledctl.c
 brightnessctl: brightnessctl.c
 	$(CC) $(CFLAGS) -o $@ $? $(LDFLAGS)
 
-.PHONY: clean
+.PHONY: clean install
 clean:
 	rm -f ledctl brightnessctl
+
+install:
+	cp ledctl brightnessctl /usr/local/bin
+	chown root:root /usr/local/bin/ledctl /usr/local/bin/brightnessctl
+	chmod a+s /usr/local/bin/ledctl /usr/local/bin/brightnessctl
+
 

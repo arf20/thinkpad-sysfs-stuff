@@ -6,6 +6,11 @@
 #include <errno.h>
 
 int main(int argc, char **argv) {
+    if (argc < 2) {
+        fprintf(stderr, "usage: %s <brightness path>\n");
+        exit(1);
+    }
+
     const char *ledbrpath = argv[1];
     int fd = open(ledbrpath, O_RDWR);
     if (fd < 0) {

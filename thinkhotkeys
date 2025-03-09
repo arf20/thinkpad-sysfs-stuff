@@ -1,0 +1,44 @@
+#!/bin/bash
+
+muteled="platform::mute"
+micmuteled="platform::micmute"
+
+volstep=5
+brightstep=5
+
+if [[ $# -lt 1 ]]; then
+    >&2 echo "Illegal number of parameters"
+    exit 1
+fi
+
+if [ "$1" = "syncleds" ]; then
+    if [[ $(pactl get-sink-mute @DEFAULT_SINK@) =~ yes ]]; then
+        ledctl $muteled on
+    else
+        ledctl $muteled off
+    fi
+
+    if [[ $(pactl get-source-mute @DEFAULT_SOURCE@) =~ yes ]]; then
+        ledctl $muteled on
+    else
+        ledctl $muteled off
+    fi
+elif [ "$1" = "volinc" ]; then
+    pactl set-sink-volume @DEFAULT_SINK@ +$volstep%
+    #notify-send "[+5%]"
+elif [ "$1" = "voldec" ]; then
+    pactl set-sink-volume @DEFAULT_SINK@ -$volstep%
+elif [ "$1" = "volmutetog" ]; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    ledctl $muteled
+elif [ "$1" = "micmutetog" ]; then
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    ledctl $micmuteled
+elif [ "$1" = "brightinc" ]; then
+    brightnessctl +$brightstep
+elif [ "$1" = "brightdec" ]; then
+    brightnessctl -$brightstep
+else
+    >&2 echo "Illegal parameter"
+fi
+

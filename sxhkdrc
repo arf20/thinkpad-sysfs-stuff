@@ -1,0 +1,14 @@
+XF86AudioRaiseVolume
+	thinkhotkeys volinc
+XF86AudioLowerVolume
+	thinkhotkeys voldec
+XF86AudioMute
+	thinkhotkeys volmutetog
+XF86AudioMicMute
+	thinkhotkeys micmutetog
+
+XF86MonBrightnessUp
+	thinkhotkeys brightinc
+XF86MonBrightnessDown
+	thinkhotkeys brightdec
+

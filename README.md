@@ -11,11 +11,17 @@ the binaries to be able to use sysfs with unprivilaged users
 
 ### ledctl
 
+Sets keyboard LEDs
+
 ```
-usage: ledctl <brightness path>
+usage: %s <led name> [(default)toggle|on|off]
 ```
 
+led name as in /sys/class/leds
+
 ### brightnessctl
+
+Sets LCD backlight intensity
 
 Supports intel\_backlight (default: /sys/class/backlight/intel_backlight/)
 
@@ -23,11 +29,21 @@ Supports intel\_backlight (default: /sys/class/backlight/intel_backlight/)
 usage: brightnessctl <[0-100]|(+|-)[0-100]>
 ```
 
+### thinkhotkeys
+
+Script for hotkey actions and calling \*ctl programs
+
+ - Volume
+ - Mute/Mic Mute
+ - Brightness
+
+Included an example config for sxhkd (sxhkdrc)
+
 ## Tested working
 
 ### ThinkPad P53
 
-LEDs:
+#### LEDs:
 
 ```
 input0::capslock -> ../../devices/platform/i8042/serio0/input/input0/input0::capslock
@@ -43,9 +59,19 @@ tpacpi::standby -> ../../devices/platform/thinkpad_acpi/leds/tpacpi::standby
 tpacpi::thinkvantage -> ../../devices/platform/thinkpad_acpi/leds/tpacpi::thinkvantage
 ```
 
-Backlight:
+Caps/NumLock LEDs work by default, as keyboard backlight (with Fn+Space)
+
+scrolllock, phy0-led, power, standby and thinkvantage don't have real LEDs
+
+#### Backlight:
 
 ```
 /sys/class/backlight/intel_backlight/brightness
+```
+
+#### Fans:
+
+```
+/proc/acpi/ibm/fan
 ```
 

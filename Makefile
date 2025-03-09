@@ -15,7 +15,7 @@ clean:
 	rm -f ledctl brightnessctl
 
 install:
-	cp ledctl brightnessctl /usr/local/bin
+	cp ledctl brightnessctl thinkhotkeys /usr/local/bin
 	chown root:root /usr/local/bin/ledctl /usr/local/bin/brightnessctl
 	chmod a+s /usr/local/bin/ledctl /usr/local/bin/brightnessctl
 

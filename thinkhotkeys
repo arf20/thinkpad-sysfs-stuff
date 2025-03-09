@@ -7,7 +7,7 @@ volstep=5
 brightstep=5
 
 if [[ $# -lt 1 ]]; then
-    >&2 echo "Illegal number of parameters"
+    >&2 echo "usage: $0 <syncleds|volinc|voldec|volmutetog|micmutetog|brightinc|brightdec|fanoff|faninc|fandec|fanmax>"
     exit 1
 fi
 
@@ -38,6 +38,16 @@ elif [ "$1" = "brightinc" ]; then
     brightnessctl +$brightstep
 elif [ "$1" = "brightdec" ]; then
     brightnessctl -$brightstep
+elif [ "$1" = "fanoff" ]; then
+    fanctl 0
+elif [ "$1" = "fanmax" ]; then
+    fanctl full-speed
+elif [ "$1" = "faninc" ]; then
+    current=$(cat /proc/acpi/ibm/fan | grep ^level | awk '{print $2}')
+    fanctl $((current < 7 ? current + 1 : 7))
+elif [ "$1" = "fandec" ]; then
+    current=$(cat /proc/acpi/ibm/fan | grep ^level | awk '{print $2}')
+    fanctl $((current > 0 ? current - 1 : 0))
 else
     >&2 echo "Illegal parameter"
 fi

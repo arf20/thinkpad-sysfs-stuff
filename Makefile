@@ -2,7 +2,7 @@ CC := gcc
 CFLAGS := -Wall -pedantic -g -O0
 LDFLAGS :=
 
-all: ledctl brightnessctl
+all: ledctl brightnessctl fanctl
 
 ledctl: ledctl.c
 	$(CC) $(CFLAGS) -o $@ $? $(LDFLAGS)
@@ -10,13 +10,15 @@ ledctl: ledctl.c
 brightnessctl: brightnessctl.c
 	$(CC) $(CFLAGS) -o $@ $? $(LDFLAGS)
 
+fanctl: fanctl.c
+	$(CC) $(CFLAGS) -o $@ $? $(LDFLAGS)
+
 .PHONY: clean install
 clean:
-	rm -f ledctl brightnessctl
+	rm -f ledctl brightnessctl fanctl
 
 install:
-	cp ledctl brightnessctl thinkhotkeys /usr/local/bin
-	chown root:root /usr/local/bin/ledctl /usr/local/bin/brightnessctl
-	chmod a+s /usr/local/bin/ledctl /usr/local/bin/brightnessctl
-
+	cp ledctl brightnessctl fanctl thinkhotkeys /usr/local/bin
+	chown root:root /usr/local/bin/ledctl /usr/local/bin/brightnessctl /usr/local/bin/fanctl
+	chmod a+s /usr/local/bin/ledctl /usr/local/bin/brightnessctl /usr/local/bin/fanctl
 

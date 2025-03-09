@@ -29,6 +29,16 @@ Supports intel\_backlight (default: /sys/class/backlight/intel_backlight/)
 usage: brightnessctl <[0-100]|(+|-)[0-100]>
 ```
 
+### fanctl
+
+Sets fan speed
+
+Via /proc/acpi/ibm/fan interface
+
+```
+usage: %s [0-7|auto|full-speed]
+```
+
 ### thinkhotkeys
 
 Script for hotkey actions and calling \*ctl programs
@@ -36,6 +46,10 @@ Script for hotkey actions and calling \*ctl programs
  - Volume
  - Mute/Mic Mute
  - Brightness
+
+```
+usage: thinkhotkeys <syncleds|volinc|voldec|volmutetog|micmutetog|brightinc|brightdec|faninc|fandec>
+```
 
 Included an example config for sxhkd (sxhkdrc)
 

@@ -39,6 +39,14 @@ Via /proc/acpi/ibm/fan interface
 usage: fanctl [0-7|auto|full-speed]
 ```
 
+### ledkeyer
+
+Keys LED with morse code
+
+```
+usage: %s [-s <wpm>] [-l] <led name> <message>
+```
+
 ### thinkhotkeys
 
 Script for hotkey actions and calling \*ctl programs

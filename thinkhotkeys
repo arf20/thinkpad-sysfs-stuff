@@ -19,9 +19,9 @@ if [ "$1" = "syncleds" ]; then
     fi
 
     if [[ $(pactl get-source-mute @DEFAULT_SOURCE@) =~ yes ]]; then
-        ledctl $muteled on
+        ledctl $micmuteled on
     else
-        ledctl $muteled off
+        ledctl $micmuteled off
     fi
 elif [ "$1" = "volinc" ]; then
     pactl set-sink-volume @DEFAULT_SINK@ +$volstep%

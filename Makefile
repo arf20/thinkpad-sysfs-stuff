@@ -21,7 +21,7 @@ clean:
 	rm -f ledctl brightnessctl fanctl
 
 install:
-	cp ledctl brightnessctl fanctl thinkhotkeys /usr/local/bin
-	chown root:root /usr/local/bin/ledctl /usr/local/bin/brightnessctl /usr/local/bin/fanctl
-	chmod a+s /usr/local/bin/ledctl /usr/local/bin/brightnessctl /usr/local/bin/fanctl
+	cp ledctl brightnessctl fanctl ledkeyer thinkhotkeys /usr/local/bin
+	chown root:root /usr/local/bin/ledctl /usr/local/bin/brightnessctl /usr/local/bin/fanctl /usr/local/bin/ledkeyer
+	chmod a+s /usr/local/bin/ledctl /usr/local/bin/brightnessctl /usr/local/bin/fanctl /usr/local/bin/ledkeyer
 

@@ -67,11 +67,13 @@ int main(int argc, char **argv) {
     int wpm = 20, loop = 0;
     const char *ledname = NULL, *msg = NULL;
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-s") == 0) {
-            wpm = atoi(argv[i + 1]);
-            i++;
-        } else if (strcmp(argv[i], "-l") == 0) {
-            loop = 1;
+        if (argv[i][0] == '-') {
+            if (strcmp(argv[i], "-s") == 0) {
+                wpm = atoi(argv[i + 1]);
+                i++;
+            } else if (strcmp(argv[i], "-l") == 0) {
+                loop = 1;
+            } else goto usage;
         } else {
             if (!ledname)
                 ledname = argv[i];
@@ -81,6 +83,7 @@ int main(int argc, char **argv) {
     }
 
     if (argc < 3 || !ledname || !msg) {
+usage:
         fprintf(stderr, "usage: %s [-s <wpm>] [-l] <led name> <message>\n", argv[0]);
         exit(1);
     }

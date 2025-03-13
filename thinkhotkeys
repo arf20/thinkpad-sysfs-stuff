@@ -11,7 +11,7 @@ if [[ $# -lt 1 ]]; then
     exit 1
 fi
 
-if [ "$1" = "syncleds" ]; then
+syncleds () {
     if [[ $(pactl get-sink-mute @DEFAULT_SINK@) =~ yes ]]; then
         ledctl $muteled on
     else
@@ -23,6 +23,10 @@ if [ "$1" = "syncleds" ]; then
     else
         ledctl $micmuteled off
     fi
+}
+
+if [ "$1" = "syncleds" ]; then
+    syncleds
 elif [ "$1" = "volinc" ]; then
     pactl set-sink-volume @DEFAULT_SINK@ +$volstep%
     #notify-send "[+5%]"
@@ -30,10 +34,10 @@ elif [ "$1" = "voldec" ]; then
     pactl set-sink-volume @DEFAULT_SINK@ -$volstep%
 elif [ "$1" = "volmutetog" ]; then
     pactl set-sink-mute @DEFAULT_SINK@ toggle
-    ledctl $muteled
+    syncleds
 elif [ "$1" = "micmutetog" ]; then
     pactl set-source-mute @DEFAULT_SOURCE@ toggle
-    ledctl $micmuteled
+    syncleds
 elif [ "$1" = "brightinc" ]; then
     brightnessctl +$brightstep
 elif [ "$1" = "brightdec" ]; then
